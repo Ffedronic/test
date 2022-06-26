@@ -1,13 +1,12 @@
-FROM node:14
+FROM node:12.18.1
+ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY package.json /app
+COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install
+RUN npm install --production
 
 COPY . .
 
-EXPOSE 80
-
-CMD ["node", "server.js"]
+CMD [ "node", "server.js" ]
